@@ -51,7 +51,7 @@
   - Create product data JSON
   - Build data fetching hooks
 
-- [ ] **Build ProductCard component**
+- [x] **Build ProductCard component**
   - Product image display (responsive)
   - Product name and tagline
   - Price display
@@ -59,7 +59,7 @@
   - "Add to compare" button
 
 ### P2 - Medium Priority
-- [ ] **Create responsive image component**
+- [x] **Create responsive image component**
   - Support 1x and 2x images
   - Lazy loading
   - Proper srcset handling
