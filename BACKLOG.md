@@ -27,26 +27,26 @@
 ## Sprint 1: Foundation (Current)
 
 ### P0 - Critical
-- [ ] **Setup React project with Vite + TypeScript**
+- [x] **Setup React project with Vite + TypeScript**
   - Initialize Vite project
   - Configure TypeScript
   - Add ESLint + Prettier
   - Set up path aliases
 
-- [ ] **Configure Tailwind CSS**
+- [x] **Configure Tailwind CSS**
   - Install Tailwind + dependencies
   - Create tailwind.config.js
   - Add Apple-like design tokens (colors, fonts, spacing)
 
 ### P1 - High Priority
-- [ ] **Create base component structure**
+- [x] **Create base component structure**
   - `<App />` - Main app wrapper
   - `<Header />` - Page header with title
   - `<ProductSelector />` - Choose products to compare
   - `<ComparisonTable />` - Main comparison grid
   - `<Footer />` - Page footer
 
-- [ ] **Implement product data layer**
+- [x] **Implement product data layer**
   - Define TypeScript interfaces
   - Create product data JSON
   - Build data fetching hooks

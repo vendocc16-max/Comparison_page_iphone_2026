@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Apple-like base styles */
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-white text-apple-gray-800 font-sans;
+  }
+
+  /* Apple-like focus styles */
+  :focus-visible {
+    @apply outline-none ring-4 ring-apple-blue/30 ring-offset-2;
+  }
+
+  /* Apple-like selection */
+  ::selection {
+    @apply bg-apple-blue text-white;
+  }
+}
+
+@layer components {
+  /* Apple-like button styles */
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3
+           bg-apple-blue text-white font-medium rounded-apple-sm
+           transition-all duration-apple ease-apple
+           hover:bg-apple-blue-hover active:scale-[0.98];
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-6 py-3
+           bg-transparent text-apple-blue font-medium rounded-apple-sm
+           border border-apple-blue
+           transition-all duration-apple ease-apple
+           hover:bg-apple-blue hover:text-white active:scale-[0.98];
+  }
+
+  /* Apple-like link styles */
+  .link {
+    @apply text-apple-blue hover:underline transition-colors duration-200;
+  }
+
+  /* Apple-like card */
+  .card {
+    @apply bg-white rounded-apple shadow-apple p-6
+           transition-shadow duration-apple ease-apple
+           hover:shadow-apple-lg;
+  }
+
+  /* Apple-like section */
+  .section {
+    @apply py-16 md:py-24;
+  }
+
+  /* Container */
+  .container-apple {
+    @apply max-w-apple-content mx-auto px-6;
+  }
+}
+
+@layer utilities {
+  /* Text balance for headings */
+  .text-balance {
+    text-wrap: balance;
+  }
+}
