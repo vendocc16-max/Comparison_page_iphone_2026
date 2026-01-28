@@ -1,0 +1,22 @@
+{
+  "name": "iphone-comparison-page",
+  "version": "1.0.0",
+  "description": "iPhone 17 comparison page for Swedish market",
+  "main": "index.html",
+  "scripts": {
+    "start": "http-server -p 8000 -o",
+    "dev": "http-server -p 8000 -o",
+    "serve": "python3 -m http.server 8000"
+  },
+  "keywords": [
+    "iphone",
+    "comparison",
+    "apple",
+    "swedish"
+  ],
+  "author": "",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
