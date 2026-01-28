@@ -72,28 +72,46 @@
 
 ## Sprint 2: Core Features
 
+### P0 - Critical
+- [ ] **Match Apple.com desktop layout structure**
+  - Reference: https://www.apple.com/iphone/compare/
+  - Product selector at top with dropdown/modal selection
+  - Fixed column width for each product (3-4 products max)
+  - Product images with color picker inline
+  - "Buy" and "Learn more" links per product
+  - Comparison grid below with full-width rows
+  - Visual feature icons (checkmarks, camera icons, chip images)
+  - Section dividers matching Apple's style
+  - White background with subtle section separation
+  - Typography matching Apple's SF Pro Display
+
 ### P1 - High Priority
-- [ ] **Build ComparisonTable component**
-  - Side-by-side product columns
-  - Specification rows
-  - Category headers (collapsible)
-  - Highlight differences
+- [ ] **Product column header component**
+  - Large product image (centered)
+  - Color picker with visual swatches
+  - Product name and price
+  - "Buy" button (primary CTA)
+  - "Learn more" link
+  - Sticky on scroll
 
 - [ ] **Implement sticky header**
   - Fixed product names/images on scroll
   - Smooth scroll behavior
-  - Mobile-friendly behavior
+  - Compact mode when scrolled
 
-- [ ] **Add/Remove products from comparison**
-  - Maximum 3-4 products
-  - State management
-  - Smooth animations
+- [ ] **Specification rows with Apple styling**
+  - Full-width alternating background
+  - Icon + label on left
+  - Values aligned under each product
+  - Feature images (chip, camera system, etc.)
+  - Checkmark/dash for boolean values
 
 ### P2 - Medium Priority
 - [ ] **Category sections**
   - Display, Camera, Chip, etc.
-  - Expand/collapse functionality
-  - Animated transitions
+  - Section headers with Apple typography
+  - No collapse on desktop (full view)
+  - Collapse on mobile
 
 - [ ] **Mobile responsive design**
   - Mobile-first approach
