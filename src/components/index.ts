@@ -4,3 +4,4 @@ export { default as ProductSelector } from './ProductSelector';
 export { default as ComparisonTable } from './ComparisonTable';
 export { default as ProductCard } from './ProductCard';
 export { default as ResponsiveImage } from './ResponsiveImage';
+export { default as AppleComparison } from './AppleComparison';

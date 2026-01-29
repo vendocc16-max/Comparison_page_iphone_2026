@@ -1,25 +1,61 @@
 export default function Header() {
   return (
-    <header className="bg-apple-gray-100 border-b border-apple-gray-200">
-      <div className="container-apple py-4">
-        <nav className="flex items-center justify-between">
-          <a href="/" className="text-apple-gray-800 hover:text-apple-gray-600 transition-colors">
+    <header className="bg-[#fbfbfd] border-b border-apple-gray-200">
+      {/* Top Nav Bar */}
+      <div className="bg-[#1d1d1f]">
+        <div className="max-w-[980px] mx-auto px-6 h-11 flex items-center justify-between">
+          <a href="/" className="text-[#f5f5f7] hover:text-white transition-colors">
             <svg
-              className="w-5 h-5"
-              viewBox="0 0 17 48"
+              className="w-[14px] h-[44px]"
+              viewBox="0 0 14 44"
               fill="currentColor"
               aria-label="Apple"
             >
-              <path d="M15.5752 19.0792C15.4896 19.1464 13.7224 20.1536 13.7224 22.3448C13.7224 24.8752 15.9776 25.7768 16.0488 25.8016C16.0344 25.8544 15.6816 27.0544 14.8248 28.2832C14.0712 29.3624 13.2824 30.4384 12.0744 30.4384C10.8664 30.4384 10.5528 29.6936 9.1464 29.6936C7.776 29.6936 7.2984 30.4672 6.1848 30.4672C5.0712 30.4672 4.3112 29.4656 3.4344 28.2256C2.4192 26.7848 1.5856 24.5576 1.5856 22.4384C1.5856 18.9536 3.8768 17.1056 6.1336 17.1056C7.3056 17.1056 8.2792 17.9144 9.0168 17.9144C9.7184 17.9144 10.8088 17.0616 12.1528 17.0616C12.6448 17.0616 14.412 17.1056 15.5752 19.0792ZM11.236 14.1728C11.7856 13.5112 12.172 12.5952 12.172 11.6792C12.172 11.5496 12.1584 11.4168 12.1296 11.312C11.2496 11.3512 10.2144 11.9024 9.5792 12.6504C9.0872 13.2232 8.6152 14.1392 8.6152 15.0688C8.6152 15.2128 8.6432 15.3568 8.6576 15.408C8.7152 15.4192 8.8088 15.4336 8.9024 15.4336C9.6936 15.4336 10.6504 14.9024 11.236 14.1728Z" />
+              <path d="M13.0729 17.6825C13.0135 17.7286 11.7688 18.4359 11.7688 19.9777C11.7688 21.7587 13.3561 22.3947 13.4041 22.4121C13.3966 22.4465 13.1479 23.2873 12.5398 24.1453C11.9959 24.9062 11.4277 25.6671 10.5667 25.6671C9.70576 25.6671 9.4698 25.1494 8.44883 25.1494C7.45167 25.1494 7.10174 25.6902 6.29636 25.6902C5.49098 25.6902 4.94088 24.9812 4.32893 24.1048C3.60827 23.0842 3.00003 21.5251 3.00003 20.0459C3.00003 17.5934 4.61388 16.2856 6.20393 16.2856C7.05272 16.2856 7.7617 16.8533 8.28514 16.8533C8.78478 16.8533 9.57871 16.262 10.5493 16.262C10.8874 16.262 12.1321 16.2856 13.0729 17.6825ZM10.6149 14.1617C10.9995 13.7049 11.2752 13.0793 11.2752 12.4537C11.2752 12.3667 11.2674 12.2779 11.2518 12.2026C10.6227 12.2258 9.87838 12.6129 9.42421 13.1367C9.07428 13.5371 8.74036 14.1617 8.74036 14.7969C8.74036 14.8927 8.75629 14.9885 8.76427 15.0229C8.80394 15.0307 8.86762 15.0385 8.93129 15.0385C9.49338 15.0385 10.198 14.6744 10.6149 14.1617Z" />
             </svg>
           </a>
-          <h1 className="text-body font-medium text-apple-gray-800">
-            Jämför iPhone-modeller
-          </h1>
-          <a href="#" className="link text-body">
-            Köp iPhone
+
+          <nav className="hidden md:flex items-center gap-8 text-xs text-[#f5f5f7]">
+            <a href="#" className="hover:text-white transition-colors">Butik</a>
+            <a href="#" className="hover:text-white transition-colors">Mac</a>
+            <a href="#" className="hover:text-white transition-colors">iPad</a>
+            <a href="#" className="hover:text-white transition-colors font-medium">iPhone</a>
+            <a href="#" className="hover:text-white transition-colors">Watch</a>
+            <a href="#" className="hover:text-white transition-colors">AirPods</a>
+            <a href="#" className="hover:text-white transition-colors">Tv & Hem</a>
+            <a href="#" className="hover:text-white transition-colors">Support</a>
+          </nav>
+
+          <div className="flex items-center gap-4">
+            <button className="text-[#f5f5f7] hover:text-white transition-colors">
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </button>
+            <button className="text-[#f5f5f7] hover:text-white transition-colors">
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Sub Navigation */}
+      <div className="max-w-[980px] mx-auto px-6">
+        <div className="flex items-center justify-between h-12 overflow-x-auto">
+          <a href="#" className="text-body font-semibold text-apple-gray-800 whitespace-nowrap">
+            iPhone
           </a>
-        </nav>
+          <nav className="hidden md:flex items-center gap-5 text-xs text-apple-gray-500">
+            <a href="#" className="hover:text-apple-gray-800 transition-colors">Utforska iPhone</a>
+            <a href="#" className="hover:text-apple-gray-800 transition-colors font-medium text-apple-gray-800">Jämför modeller</a>
+            <a href="#" className="hover:text-apple-gray-800 transition-colors">Byt telefon</a>
+            <a href="#" className="hover:text-apple-gray-800 transition-colors">Mobilabonnemang</a>
+            <a href="#" className="hover:text-apple-gray-800 transition-colors">iPhone och miljön</a>
+            <a href="#" className="hover:text-apple-gray-800 transition-colors">Tillbehör</a>
+          </nav>
+        </div>
       </div>
     </header>
   );
