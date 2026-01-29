@@ -7,17 +7,20 @@
  * - Standalone builds (iframe deployment)
  */
 
-// Main components
-export { AppleComparison } from '@components/AppleComparison';
-export { ComparisonTable } from '@components/ComparisonTable';
-export { ProductCard } from '@components/ProductCard';
-export { ProductSelector } from '@components/ProductSelector';
-export { Header } from '@components/Header';
-export { Footer } from '@components/Footer';
-export { ResponsiveImage } from '@components/ResponsiveImage';
+import type { Product, ProductImage, ProductSpec, ProductCategory, ComparisonState } from './types/product';
 
-// Types
-export type { Product, iPhone, Specification, Category } from '@types/product';
+// Main components (default exports)
+export { default as AppleComparison } from '@components/AppleComparison';
+export { default as ComparisonTable } from '@components/ComparisonTable';
+export { default as ProductCard } from '@components/ProductCard';
+export { default as ProductSelector } from '@components/ProductSelector';
+export { default as Header } from '@components/Header';
+export { default as Footer } from '@components/Footer';
+export { default as ResponsiveImage } from '@components/ResponsiveImage';
+export { default as ImageGallery } from '@components/ImageGallery';
+
+// Re-export types
+export type { Product, ProductImage, ProductSpec, ProductCategory, ComparisonState };
 
 // Version
 export const VERSION = '__VERSION__';

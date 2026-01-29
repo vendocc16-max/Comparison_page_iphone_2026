@@ -1,5 +1,5 @@
 import { Product } from '../types/product';
-import ResponsiveImage from './ResponsiveImage';
+import ImageGallery from './ImageGallery';
 
 interface ProductCardProps {
   product: Product;
@@ -41,12 +41,11 @@ export default function ProductCard({
         </div>
       )}
 
-      {/* Product Image */}
-      <div className="aspect-square p-6 bg-apple-gray-50">
-        <ResponsiveImage
-          images={product.images.frontBack}
-          alt={`${product.name} front and back view`}
-          className="w-full h-full"
+      {/* Product Image with Gallery */}
+      <div className="p-6 bg-apple-gray-50">
+        <ImageGallery
+          images={product.images}
+          productName={product.name}
         />
       </div>
 

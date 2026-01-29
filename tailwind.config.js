@@ -82,6 +82,16 @@ export default {
         'apple': '0 4px 16px rgba(0, 0, 0, 0.12)',
         'apple-lg': '0 8px 32px rgba(0, 0, 0, 0.16)',
       },
+      // Animations
+      keyframes: {
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+      },
+      animation: {
+        'fade-in': 'fadeIn 200ms ease-in-out',
+      },
     },
   },
   plugins: [],
