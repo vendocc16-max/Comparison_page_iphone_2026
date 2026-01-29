@@ -3,15 +3,19 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "iPhone 17 comparison page - React implementation",
+  "description": "iPhone 17 comparison page - React implementation with Tele2 integration",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "build:iframe": "VITE_INTEGRATION_MODE=iframe npm run build",
+    "build:lib": "tsc && vite build --mode lib",
     "preview": "vite preview",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "format": "prettier --write \"src/**/*.{ts,tsx,css}\"",
     "typecheck": "tsc --noEmit",
-    "serve:legacy": "python3 -m http.server 8000"
+    "serve:legacy": "python3 -m http.server 8000",
+    "test": "vitest",
+    "test:ui": "vitest --ui"
   },
   "dependencies": {
     "react": "^18.2.0",

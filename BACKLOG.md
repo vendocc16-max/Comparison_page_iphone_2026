@@ -177,6 +177,41 @@
 
 ---
 
+## Sprint 5: Tele2 Integration (New)
+
+### P0 - Critical
+- [x] **Create integration guide documentation**
+  - Iframe embedding instructions
+  - React component integration guide
+  - Web Component wrapper guide
+  - Environment configuration
+
+- [x] **Update Vite configuration for deployments**
+  - Add iframe-ready build mode
+  - Add library build mode
+  - Add CORS headers for development
+  - Add minification settings
+
+- [x] **Create Tele2-specific deployment guide**
+  - Quick start for Tele2 developers
+  - Step-by-step iframe setup
+  - Message passing for page navigation
+  - Performance checklist
+  - Troubleshooting guide
+
+### P1 - High Priority
+- [x] **Create library export index**
+  - Export main components
+  - Export TypeScript types
+  - Add version constants
+
+- [ ] **Create Web Components wrapper** (Optional)
+  - Convert React components to custom elements
+  - Allow framework-agnostic usage
+  - Support in any JavaScript environment
+
+---
+
 ## Icebox (Future Consideration)
 
 - [ ] Multi-language support (English, Swedish)
@@ -185,6 +220,9 @@
 - [ ] CMS integration for product data
 - [ ] SEO optimization
 - [ ] PWA features
+- [ ] Tele2 design system integration
+- [ ] Price comparison with subscription plans
+- [ ] Trade-in value calculator
 
 ---
 
@@ -227,3 +265,4 @@ See `references/SESV_iPhone_Q425_Contextual_Compare_HTML_Module.jpg` for visual 
 |------|--------|--------|
 | 2026-01-28 | Initial backlog created | Backlog Agent |
 | 2026-01-29 | Sprint 2 core features completed (Apple layout, sticky header, mobile responsive, animations) | Coding Agent |
+| 2026-01-29 | Sprint 5 Tele2 integration prepared - iframe deployment ready, guides created | Coding Agent |
