@@ -2,7 +2,8 @@
 
 > **Owner:** Backlog Agent
 > **Last Updated:** 2026-01-29
-> **Sprint:** 2 - Core Features
+> **Current Sprint:** 3 - Tele2 Alignment & Interactivity
+> **Focus:** Tele2.se design system integration, phone selection, spec column labeling
 
 ---
 
@@ -121,6 +122,34 @@
 ---
 
 ## Sprint 3: Interactivity & Polish
+
+### P0 - Critical (Tele2 Alignment)
+- [ ] **Adopt Tele2.se Design System**
+  - Replace Apple-specific colors with Tele2 brand colors
+  - Update typography to match Tele2.se
+  - Remove all Apple logos, branding, and references
+  - Match Tele2.se layout and spacing
+  - Update buttons and CTAs to "Köp nu" (Buy now) instead of "Lägg till"
+  - Align with Tele2 visual language
+
+- [ ] **Phone Selector Dropdown**
+  - Add dropdown/modal to select which phones to compare
+  - Support 2-4 phone comparison
+  - Persist selection in URL state
+  - Pre-select 2-3 popular phones by default
+  - Mobile-responsive selector
+
+- [ ] **Clear Phone Column Labels**
+  - Display phone name above each column (e.g., "iPhone 17", "iPhone 17 Air", "iPhone 17 Pro")
+  - Prominent positioning in header
+  - Consistent sizing and styling
+  - Reference: See Tele2.se comparison page structure
+
+- [ ] **Spec Column Headers with Phone Names**
+  - Each spec column clearly labeled with phone model
+  - Visual distinction between columns
+  - Phone image thumbnail in header (optional)
+  - Make it obvious which spec belongs to which phone
 
 ### P1 - High Priority
 - [x] **Image galleries** (Fast path complete)
@@ -274,3 +303,4 @@ See `references/SESV_iPhone_Q425_Contextual_Compare_HTML_Module.jpg` for visual 
 | 2026-01-29 | Sprint 2 core features completed (Apple layout, sticky header, mobile responsive, animations) | Coding Agent |
 | 2026-01-29 | Sprint 5 Tele2 integration prepared - iframe deployment ready, guides created | Coding Agent |
 | 2026-01-29 | Sprint 3 image galleries implemented - fast path complete (carousel, lightbox, swipe, keyboard nav) | Coding Agent |
+| 2026-01-29 | Sprint 3 updated with Tele2 alignment requirements - phone selector, design system, spec labeling | Backlog Agent |
