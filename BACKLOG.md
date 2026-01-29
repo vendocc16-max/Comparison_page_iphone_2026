@@ -1,8 +1,8 @@
 # Product Backlog - iPhone Comparison Page
 
 > **Owner:** Backlog Agent
-> **Last Updated:** 2026-01-28
-> **Sprint:** 1 - Foundation
+> **Last Updated:** 2026-01-29
+> **Sprint:** 2 - Core Features
 
 ---
 
@@ -24,7 +24,7 @@
 
 ---
 
-## Sprint 1: Foundation (Current)
+## Sprint 1: Foundation (Completed)
 
 ### P0 - Critical
 - [x] **Setup React project with Vite + TypeScript**
@@ -70,10 +70,10 @@
 
 ---
 
-## Sprint 2: Core Features
+## Sprint 2: Core Features (Current)
 
 ### P0 - Critical
-- [ ] **Match Apple.com desktop layout structure**
+- [x] **Match Apple.com desktop layout structure**
   - Reference: https://www.apple.com/iphone/compare/
   - Product selector at top with dropdown/modal selection
   - Fixed column width for each product (3-4 products max)
@@ -86,7 +86,7 @@
   - Typography matching Apple's SF Pro Display
 
 ### P1 - High Priority
-- [ ] **Product column header component**
+- [x] **Product column header component**
   - Large product image (centered)
   - Color picker with visual swatches
   - Product name and price
@@ -94,12 +94,12 @@
   - "Learn more" link
   - Sticky on scroll
 
-- [ ] **Implement sticky header**
+- [x] **Implement sticky header**
   - Fixed product names/images on scroll
   - Smooth scroll behavior
   - Compact mode when scrolled
 
-- [ ] **Specification rows with Apple styling**
+- [x] **Specification rows with Apple styling**
   - Full-width alternating background
   - Icon + label on left
   - Values aligned under each product
@@ -107,13 +107,13 @@
   - Checkmark/dash for boolean values
 
 ### P2 - Medium Priority
-- [ ] **Category sections**
+- [x] **Category sections**
   - Display, Camera, Chip, etc.
   - Section headers with Apple typography
-  - No collapse on desktop (full view)
-  - Collapse on mobile
+  - Tab navigation on desktop
+  - Horizontal scrollable tabs on mobile
 
-- [ ] **Mobile responsive design**
+- [x] **Mobile responsive design**
   - Mobile-first approach
   - Touch-friendly interactions
   - Horizontal scroll for comparison
@@ -135,10 +135,11 @@
   - Focus management
 
 ### P2 - Medium Priority
-- [ ] **Animations and transitions**
+- [x] **Animations and transitions**
   - Page load animations
   - Smooth state transitions
   - Micro-interactions
+  - Category tab transitions with fade-in
 
 - [ ] **Performance optimization**
   - Code splitting
@@ -225,3 +226,4 @@ See `references/SESV_iPhone_Q425_Contextual_Compare_HTML_Module.jpg` for visual 
 | Date | Change | Author |
 |------|--------|--------|
 | 2026-01-28 | Initial backlog created | Backlog Agent |
+| 2026-01-29 | Sprint 2 core features completed (Apple layout, sticky header, mobile responsive, animations) | Coding Agent |

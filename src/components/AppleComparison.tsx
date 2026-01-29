@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Product } from '../types/product';
 import ResponsiveImage from './ResponsiveImage';
 
@@ -17,6 +17,19 @@ const categories = [
 
 export default function AppleComparison({ products }: AppleComparisonProps) {
   const [activeCategory, setActiveCategory] = useState('design');
+  const [isScrolled, setIsScrolled] = useState(false);
+  const headerRef = useRef<HTMLDivElement>(null);
+
+  // Track scroll position for compact header
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      setIsScrolled(scrollTop > 400);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   if (products.length === 0) {
     return (
@@ -30,37 +43,70 @@ export default function AppleComparison({ products }: AppleComparisonProps) {
 
   return (
     <div className="apple-comparison">
-      {/* Product Headers - Fixed at top */}
-      <div className="sticky top-0 z-20 bg-white border-b border-apple-gray-200">
-        <div className="max-w-[980px] mx-auto px-6">
-          {/* Product Title Row */}
+      {/* Sticky Compact Header - Shows when scrolled */}
+      <div
+        ref={headerRef}
+        className={`
+          fixed top-0 left-0 right-0 z-30 bg-white/95 backdrop-blur-md border-b border-apple-gray-200
+          transition-all duration-300 ease-apple
+          ${isScrolled ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}
+        `}
+      >
+        <div className="max-w-[980px] mx-auto px-4 md:px-6">
           <div
-            className="grid pt-6 pb-4"
+            className="grid py-3"
             style={{ gridTemplateColumns: `repeat(${products.length}, 1fr)` }}
           >
             {products.map((product) => (
-              <div key={product.id} className="text-center px-4">
-                <p className="text-caption text-apple-gray-500 mb-1">Ny</p>
-                <h2 className="text-subheadline font-semibold text-apple-gray-800">
-                  {product.name}
-                </h2>
+              <div key={product.id} className="text-center px-2 md:px-4 flex items-center justify-center gap-3">
+                <div className="w-10 h-10 flex-shrink-0 hidden sm:block">
+                  <ResponsiveImage
+                    images={product.images.frontBack}
+                    alt={product.name}
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <div className="text-left">
+                  <h3 className="text-caption md:text-body font-semibold text-apple-gray-800 truncate">
+                    {product.name}
+                  </h3>
+                  <p className="text-small text-apple-gray-500 hidden md:block">
+                    {product.price.formatted}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </div>
 
-      {/* Product Images & CTAs */}
-      <div className="bg-white pb-8">
-        <div className="max-w-[980px] mx-auto px-6">
+      {/* Hero Section with Products */}
+      <div className="bg-white pt-8 pb-4 md:pb-8">
+        <div className="max-w-[980px] mx-auto px-4 md:px-6">
+          {/* Product Title Row */}
+          <div
+            className="grid mb-4 md:mb-6"
+            style={{ gridTemplateColumns: `repeat(${products.length}, 1fr)` }}
+          >
+            {products.map((product) => (
+              <div key={product.id} className="text-center px-2 md:px-4">
+                <p className="text-small md:text-caption text-apple-gray-500 mb-1">Ny</p>
+                <h2 className="text-body md:text-subheadline font-semibold text-apple-gray-800">
+                  {product.name}
+                </h2>
+              </div>
+            ))}
+          </div>
+
+          {/* Product Images */}
           <div
             className="grid"
             style={{ gridTemplateColumns: `repeat(${products.length}, 1fr)` }}
           >
             {products.map((product) => (
-              <div key={product.id} className="text-center px-4">
+              <div key={product.id} className="text-center px-2 md:px-4">
                 {/* Product Image */}
-                <div className="h-[280px] flex items-center justify-center mb-4">
+                <div className="h-[180px] md:h-[280px] flex items-center justify-center mb-3 md:mb-4">
                   <ResponsiveImage
                     images={product.images.frontBack}
                     alt={product.name}
@@ -70,34 +116,39 @@ export default function AppleComparison({ products }: AppleComparisonProps) {
                 </div>
 
                 {/* Color Swatches */}
-                <div className="flex justify-center gap-2 mb-4">
-                  {product.colors.map((color) => (
+                <div className="flex justify-center gap-1 md:gap-2 mb-3 md:mb-4">
+                  {product.colors.slice(0, 4).map((color) => (
                     <button
                       key={color.name}
-                      className="w-6 h-6 rounded-full border-2 border-white shadow-md hover:scale-110 transition-transform focus:outline-none focus:ring-2 focus:ring-apple-blue focus:ring-offset-2"
+                      className="w-4 h-4 md:w-6 md:h-6 rounded-full border-2 border-white shadow-md hover:scale-110 transition-transform focus:outline-none focus:ring-2 focus:ring-apple-blue focus:ring-offset-1"
                       style={{ backgroundColor: color.hex }}
                       title={color.name}
                       aria-label={`Välj ${color.name}`}
                     />
                   ))}
+                  {product.colors.length > 4 && (
+                    <span className="text-small text-apple-gray-400 self-center">
+                      +{product.colors.length - 4}
+                    </span>
+                  )}
                 </div>
 
                 {/* Price */}
-                <p className="text-body text-apple-gray-800 mb-4">
+                <p className="text-caption md:text-body text-apple-gray-800 mb-3 md:mb-4">
                   {product.price.formatted}
                 </p>
 
                 {/* CTAs */}
-                <div className="space-y-3">
+                <div className="space-y-2 md:space-y-3">
                   <a
                     href="#"
-                    className="inline-flex items-center justify-center w-full max-w-[200px] px-6 py-3 bg-apple-blue text-white text-body font-medium rounded-apple-sm hover:bg-apple-blue-hover transition-colors"
+                    className="inline-flex items-center justify-center w-full max-w-[160px] md:max-w-[200px] px-4 md:px-6 py-2 md:py-3 bg-apple-blue text-white text-caption md:text-body font-medium rounded-apple-sm hover:bg-apple-blue-hover transition-colors"
                   >
                     Köp
                   </a>
                   <a
                     href="#"
-                    className="block text-apple-blue text-body hover:underline"
+                    className="block text-apple-blue text-caption md:text-body hover:underline"
                   >
                     Läs mer →
                   </a>
@@ -108,17 +159,17 @@ export default function AppleComparison({ products }: AppleComparisonProps) {
         </div>
       </div>
 
-      {/* Category Navigation */}
-      <div className="sticky top-[72px] z-10 bg-apple-gray-100 border-y border-apple-gray-200">
-        <div className="max-w-[980px] mx-auto px-6">
-          <nav className="flex justify-center">
+      {/* Category Navigation - Sticky */}
+      <div className="sticky top-0 z-20 bg-apple-gray-100 border-y border-apple-gray-200">
+        <div className="max-w-[980px] mx-auto px-4 md:px-6">
+          <nav className="flex justify-center overflow-x-auto scrollbar-hide scroll-smooth">
             <ul className="flex gap-1 p-1 bg-apple-gray-200 rounded-full my-3">
               {categories.map((cat) => (
                 <li key={cat.id}>
                   <button
                     onClick={() => setActiveCategory(cat.id)}
                     className={`
-                      px-5 py-2 rounded-full text-caption font-medium transition-all
+                      px-3 md:px-5 py-1.5 md:py-2 rounded-full text-small md:text-caption font-medium transition-all whitespace-nowrap
                       ${activeCategory === cat.id
                         ? 'bg-apple-gray-800 text-white'
                         : 'text-apple-gray-600 hover:text-apple-gray-800'
@@ -135,174 +186,260 @@ export default function AppleComparison({ products }: AppleComparisonProps) {
       </div>
 
       {/* Comparison Content */}
-      <div className="bg-white py-8">
-        <div className="max-w-[980px] mx-auto px-6">
-          {/* Design Section */}
-          {activeCategory === 'design' && (
-            <ComparisonSection
-              products={products}
-              title="Design"
-              rows={[
-                {
-                  label: 'Material',
-                  getValue: (p) =>
-                    p.id === 'iphone-17-pro'
-                      ? 'Titan'
-                      : p.id === 'iphone-17-air'
-                      ? 'Titan och aluminium'
-                      : 'Aluminium',
-                  imageKey: 'frontBack',
-                },
-                {
-                  label: 'Tjocklek',
-                  getValue: (p) =>
-                    p.id === 'iphone-17-pro'
-                      ? '8,25 mm'
-                      : p.id === 'iphone-17-air'
-                      ? '5,5 mm'
-                      : '7,8 mm',
-                  highlight: (p) => p.id === 'iphone-17-air',
-                },
-                {
-                  label: 'Vikt',
-                  getValue: (p) =>
-                    p.id === 'iphone-17-pro'
-                      ? '227 g'
-                      : p.id === 'iphone-17-air'
-                      ? '149 g'
-                      : '195 g',
-                  highlight: (p) => p.id === 'iphone-17-air',
-                },
-              ]}
-            />
-          )}
+      <div className="bg-white py-6 md:py-8">
+        <div className="max-w-[980px] mx-auto px-4 md:px-6">
+          {/* Scrollable container for mobile */}
+          <div className="overflow-x-auto md:overflow-x-visible -mx-4 px-4 md:mx-0 md:px-0 scrollbar-hide scroll-smooth">
+            <div className="min-w-[600px] md:min-w-0" key={activeCategory}>
+              {/* Design Section */}
+              {activeCategory === 'design' && (
+                <div className="animate-fade-in">
+                <ComparisonSection
+                  products={products}
+                  title="Design"
+                  rows={[
+                    {
+                      label: 'Material',
+                      getValue: (p) =>
+                        p.id === 'iphone-17-pro'
+                          ? 'Titan'
+                          : p.id === 'iphone-17-air'
+                          ? 'Titan och aluminium'
+                          : 'Aluminium',
+                      imageKey: 'frontBack',
+                    },
+                    {
+                      label: 'Tjocklek',
+                      getValue: (p) =>
+                        p.id === 'iphone-17-pro'
+                          ? '8,25 mm'
+                          : p.id === 'iphone-17-air'
+                          ? '5,5 mm'
+                          : '7,8 mm',
+                      highlight: (p) => p.id === 'iphone-17-air',
+                    },
+                    {
+                      label: 'Vikt',
+                      getValue: (p) =>
+                        p.id === 'iphone-17-pro'
+                          ? '227 g'
+                          : p.id === 'iphone-17-air'
+                          ? '149 g'
+                          : '195 g',
+                      highlight: (p) => p.id === 'iphone-17-air',
+                    },
+                    {
+                      label: 'Ceramic Shield',
+                      getValue: () => true,
+                    },
+                    {
+                      label: 'Vattenbeständig',
+                      getValue: () => 'IP68',
+                    },
+                  ]}
+                />
+                </div>
+              )}
 
-          {/* Display Section */}
-          {activeCategory === 'display' && (
-            <ComparisonSection
-              products={products}
-              title="Skärm"
-              rows={[
-                {
-                  label: 'Skärmstorlek',
-                  getValue: (p) =>
-                    p.id === 'iphone-17-pro'
-                      ? '6,3″ eller 6,9″'
-                      : p.id === 'iphone-17-air'
-                      ? '6,6″'
-                      : '6,3″',
-                },
-                {
-                  label: 'Skärmtyp',
-                  getValue: () => 'Super Retina XDR',
-                },
-                {
-                  label: 'ProMotion',
-                  getValue: (p) => p.id !== 'iphone-17',
-                  highlight: (p) => p.id !== 'iphone-17',
-                },
-                {
-                  label: 'Always-On',
-                  getValue: (p) => p.id === 'iphone-17-pro',
-                  highlight: (p) => p.id === 'iphone-17-pro',
-                },
-                {
-                  label: 'Dynamic Island',
-                  getValue: () => true,
-                },
-              ]}
-            />
-          )}
+              {/* Display Section */}
+              {activeCategory === 'display' && (
+                <div className="animate-fade-in">
+                <ComparisonSection
+                  products={products}
+                  title="Skärm"
+                  rows={[
+                    {
+                      label: 'Skärmstorlek',
+                      getValue: (p) =>
+                        p.id === 'iphone-17-pro'
+                          ? '6,3″ / 6,9″'
+                          : p.id === 'iphone-17-air'
+                          ? '6,6″'
+                          : '6,3″',
+                      imageKey: 'side',
+                    },
+                    {
+                      label: 'Skärmtyp',
+                      getValue: () => 'Super Retina XDR',
+                    },
+                    {
+                      label: 'ProMotion (120 Hz)',
+                      getValue: (p) => p.id !== 'iphone-17',
+                      highlight: (p) => p.id !== 'iphone-17',
+                    },
+                    {
+                      label: 'Always-On-skärm',
+                      getValue: (p) => p.id === 'iphone-17-pro',
+                      highlight: (p) => p.id === 'iphone-17-pro',
+                    },
+                    {
+                      label: 'Dynamic Island',
+                      getValue: () => true,
+                    },
+                    {
+                      label: 'HDR-ljusstyrka',
+                      getValue: (p) =>
+                        p.id === 'iphone-17-pro' ? '2000 nits' : '1600 nits',
+                      highlight: (p) => p.id === 'iphone-17-pro',
+                    },
+                  ]}
+                />
+                </div>
+              )}
 
-          {/* Camera Section */}
-          {activeCategory === 'camera' && (
-            <ComparisonSection
-              products={products}
-              title="Kamera"
-              rows={[
-                {
-                  label: 'Huvudkamera',
-                  getValue: () => '48 MP Fusion',
-                  imageKey: 'camera',
-                },
-                {
-                  label: 'Ultravidvinkel',
-                  getValue: (p) =>
-                    p.id === 'iphone-17-pro'
-                      ? '48 MP'
-                      : p.id === 'iphone-17'
-                      ? '48 MP'
-                      : '—',
-                  highlight: (p) => p.id === 'iphone-17-pro',
-                },
-                {
-                  label: 'Teleobjektiv',
-                  getValue: (p) =>
-                    p.id === 'iphone-17-pro' ? '48 MP 5× optisk zoom' : '—',
-                  highlight: (p) => p.id === 'iphone-17-pro',
-                },
-                {
-                  label: 'Frontkamera',
-                  getValue: (p) =>
-                    p.id === 'iphone-17-air' ? '24 MP TrueDepth' : '12 MP TrueDepth',
-                  highlight: (p) => p.id === 'iphone-17-air',
-                },
-              ]}
-            />
-          )}
+              {/* Camera Section */}
+              {activeCategory === 'camera' && (
+                <div className="animate-fade-in">
+                <ComparisonSection
+                  products={products}
+                  title="Kamera"
+                  rows={[
+                    {
+                      label: 'Kamerasystem',
+                      getValue: (p) =>
+                        p.id === 'iphone-17-pro'
+                          ? 'Pro Fusion-system'
+                          : 'Fusion-system',
+                      imageKey: 'camera',
+                    },
+                    {
+                      label: 'Huvudkamera',
+                      getValue: () => '48 MP',
+                    },
+                    {
+                      label: 'Ultravidvinkel',
+                      getValue: (p) =>
+                        p.id === 'iphone-17-pro'
+                          ? '48 MP'
+                          : p.id === 'iphone-17'
+                          ? '48 MP'
+                          : '—',
+                      highlight: (p) => p.id === 'iphone-17-pro',
+                    },
+                    {
+                      label: 'Teleobjektiv',
+                      getValue: (p) =>
+                        p.id === 'iphone-17-pro' ? '48 MP (5× zoom)' : '—',
+                      highlight: (p) => p.id === 'iphone-17-pro',
+                    },
+                    {
+                      label: 'Frontkamera',
+                      getValue: (p) =>
+                        p.id === 'iphone-17-air' ? '24 MP TrueDepth' : '12 MP TrueDepth',
+                      highlight: (p) => p.id === 'iphone-17-air',
+                    },
+                    {
+                      label: 'ProRes-video',
+                      getValue: (p) => p.id === 'iphone-17-pro',
+                      highlight: (p) => p.id === 'iphone-17-pro',
+                    },
+                  ]}
+                />
+                </div>
+              )}
 
-          {/* Chip Section */}
-          {activeCategory === 'chip' && (
-            <ComparisonSection
-              products={products}
-              title="Chip"
-              rows={[
-                {
-                  label: 'Processor',
-                  getValue: (p) =>
-                    p.id === 'iphone-17' ? 'A19' : 'A19 Pro',
-                  highlight: (p) => p.id !== 'iphone-17',
-                  imageKey: 'chip',
-                },
-                {
-                  label: 'Neural Engine',
-                  getValue: () => '16-core',
-                },
-                {
-                  label: 'Apple Intelligence',
-                  getValue: () => true,
-                },
-              ]}
-            />
-          )}
+              {/* Chip Section */}
+              {activeCategory === 'chip' && (
+                <div className="animate-fade-in">
+                <ComparisonSection
+                  products={products}
+                  title="Chip"
+                  rows={[
+                    {
+                      label: 'Processor',
+                      getValue: (p) =>
+                        p.id === 'iphone-17' ? 'A19-chip' : 'A19 Pro-chip',
+                      highlight: (p) => p.id !== 'iphone-17',
+                      imageKey: 'chip',
+                    },
+                    {
+                      label: 'CPU-kärnor',
+                      getValue: () => '6-core',
+                    },
+                    {
+                      label: 'GPU-kärnor',
+                      getValue: (p) =>
+                        p.id === 'iphone-17-pro' ? '6-core' : '5-core',
+                      highlight: (p) => p.id === 'iphone-17-pro',
+                    },
+                    {
+                      label: 'Neural Engine',
+                      getValue: () => '16-core',
+                    },
+                    {
+                      label: 'Apple Intelligence',
+                      getValue: () => true,
+                    },
+                    {
+                      label: 'USB 3-hastighet',
+                      getValue: (p) => p.id === 'iphone-17-pro',
+                      highlight: (p) => p.id === 'iphone-17-pro',
+                    },
+                  ]}
+                />
+                </div>
+              )}
 
-          {/* Battery Section */}
-          {activeCategory === 'battery' && (
-            <ComparisonSection
-              products={products}
-              title="Batteri"
-              rows={[
-                {
-                  label: 'Videouppspelning',
-                  getValue: (p) =>
-                    p.id === 'iphone-17-pro'
-                      ? 'Upp till 33 timmar'
-                      : p.id === 'iphone-17-air'
-                      ? 'Upp till 22 timmar'
-                      : 'Upp till 26 timmar',
-                  highlight: (p) => p.id === 'iphone-17-pro',
-                },
-                {
-                  label: 'MagSafe',
-                  getValue: () => true,
-                },
-                {
-                  label: 'Snabbladdning',
-                  getValue: () => true,
-                },
-              ]}
-            />
-          )}
+              {/* Battery Section */}
+              {activeCategory === 'battery' && (
+                <div className="animate-fade-in">
+                <ComparisonSection
+                  products={products}
+                  title="Batteri"
+                  rows={[
+                    {
+                      label: 'Videouppspelning',
+                      getValue: (p) =>
+                        p.id === 'iphone-17-pro'
+                          ? 'Upp till 33 tim'
+                          : p.id === 'iphone-17-air'
+                          ? 'Upp till 22 tim'
+                          : 'Upp till 26 tim',
+                      highlight: (p) => p.id === 'iphone-17-pro',
+                    },
+                    {
+                      label: 'Streamad video',
+                      getValue: (p) =>
+                        p.id === 'iphone-17-pro'
+                          ? 'Upp till 29 tim'
+                          : p.id === 'iphone-17-air'
+                          ? 'Upp till 18 tim'
+                          : 'Upp till 22 tim',
+                      highlight: (p) => p.id === 'iphone-17-pro',
+                    },
+                    {
+                      label: 'MagSafe',
+                      getValue: () => true,
+                    },
+                    {
+                      label: 'Qi2 trådlös',
+                      getValue: () => true,
+                    },
+                    {
+                      label: 'Snabbladdning',
+                      getValue: () => '50% på 30 min',
+                    },
+                  ]}
+                />
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom CTA */}
+      <div className="bg-apple-gray-50 py-12 md:py-16">
+        <div className="max-w-[980px] mx-auto px-4 md:px-6 text-center">
+          <h3 className="text-subheadline md:text-headline font-semibold text-apple-gray-800 mb-4">
+            Hittat rätt iPhone?
+          </h3>
+          <p className="text-body text-apple-gray-500 mb-6 max-w-lg mx-auto">
+            Utforska finansieringsalternativ, byt in din gamla enhet och få hjälp med att komma igång.
+          </p>
+          <a href="#" className="btn-primary inline-flex">
+            Köp iPhone
+          </a>
         </div>
       </div>
     </div>
@@ -325,20 +462,21 @@ interface ComparisonSectionProps {
 
 function ComparisonSection({ products, title, rows }: ComparisonSectionProps) {
   return (
-    <div className="comparison-section">
+    <div className="comparison-section animate-stagger">
       <h3 className="sr-only">{title}</h3>
 
       {rows.map((row, index) => (
         <div
           key={index}
           className={`
-            grid items-center py-6 border-b border-apple-gray-100
+            grid items-center py-4 md:py-6 border-b border-apple-gray-100 last:border-b-0
+            transition-colors hover:bg-apple-gray-50/50
             ${index === 0 ? 'pt-0' : ''}
           `}
-          style={{ gridTemplateColumns: `180px repeat(${products.length}, 1fr)` }}
+          style={{ gridTemplateColumns: `140px repeat(${products.length}, 1fr)` }}
         >
           {/* Row Label */}
-          <div className="text-body text-apple-gray-500 pr-4">
+          <div className="text-caption md:text-body text-apple-gray-500 pr-4">
             {row.label}
           </div>
 
@@ -348,10 +486,10 @@ function ComparisonSection({ products, title, rows }: ComparisonSectionProps) {
             const isHighlighted = row.highlight?.(product) ?? false;
 
             return (
-              <div key={product.id} className="text-center px-4">
+              <div key={product.id} className="text-center px-2 md:px-4">
                 {/* Optional Image */}
                 {row.imageKey && index === 0 && (
-                  <div className="h-[120px] flex items-center justify-center mb-3">
+                  <div className="h-[80px] md:h-[120px] flex items-center justify-center mb-2 md:mb-3">
                     <ResponsiveImage
                       images={product.images[row.imageKey]}
                       alt={`${product.name} ${row.label}`}
@@ -364,7 +502,7 @@ function ComparisonSection({ products, title, rows }: ComparisonSectionProps) {
                 {typeof value === 'boolean' ? (
                   value ? (
                     <svg
-                      className={`w-6 h-6 mx-auto ${
+                      className={`w-5 h-5 md:w-6 md:h-6 mx-auto animate-scale-in ${
                         isHighlighted ? 'text-apple-blue' : 'text-apple-green'
                       }`}
                       fill="none"
@@ -379,11 +517,11 @@ function ComparisonSection({ products, title, rows }: ComparisonSectionProps) {
                       />
                     </svg>
                   ) : (
-                    <span className="text-apple-gray-300 text-body">—</span>
+                    <span className="text-apple-gray-300 text-caption md:text-body animate-fade-in">—</span>
                   )
                 ) : (
                   <span
-                    className={`text-body ${
+                    className={`text-caption md:text-body transition-colors ${
                       isHighlighted
                         ? 'text-apple-blue font-medium'
                         : 'text-apple-gray-800'
