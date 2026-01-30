@@ -31,10 +31,10 @@ export default function AppleComparison({ products }: AppleComparisonProps) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  if (products.length === 0) {
+    if (products.length === 0) {
     return (
       <div className="py-20 text-center">
-        <p className="text-body-large text-apple-gray-500">
+        <p className="text-body-large text-gray-500">
           Välj produkter för att jämföra
         </p>
       </div>
@@ -47,8 +47,8 @@ export default function AppleComparison({ products }: AppleComparisonProps) {
       <div
         ref={headerRef}
         className={`
-          fixed top-0 left-0 right-0 z-30 bg-white/95 backdrop-blur-md border-b border-apple-gray-200
-          transition-all duration-300 ease-apple
+          fixed top-0 left-0 right-0 z-30 bg-white/95 backdrop-blur-md border-b border-gray-200
+          transition-all duration-300 ease-in-out
           ${isScrolled ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}
         `}
       >
@@ -67,10 +67,10 @@ export default function AppleComparison({ products }: AppleComparisonProps) {
                   />
                 </div>
                 <div className="text-left">
-                  <h3 className="text-caption md:text-body font-semibold text-apple-gray-800 truncate">
+                  <h3 className="text-caption md:text-body font-semibold text-gray-800 truncate">
                     {product.name}
                   </h3>
-                  <p className="text-small text-apple-gray-500 hidden md:block">
+                  <p className="text-small text-gray-500 hidden md:block">
                     {product.price.formatted}
                   </p>
                 </div>
@@ -89,9 +89,9 @@ export default function AppleComparison({ products }: AppleComparisonProps) {
             style={{ gridTemplateColumns: `repeat(${products.length}, 1fr)` }}
           >
             {products.map((product) => (
-              <div key={product.id} className="text-center px-2 md:px-4">
-                <p className="text-small md:text-caption text-apple-gray-500 mb-1">Ny</p>
-                <h2 className="text-body md:text-subheadline font-semibold text-apple-gray-800">
+                <div key={product.id} className="text-center px-2 md:px-4">
+                <p className="text-small md:text-caption text-gray-500 mb-1">Ny</p>
+                <h2 className="text-body md:text-subheadline font-semibold text-gray-800">
                   {product.name}
                 </h2>
               </div>
@@ -120,7 +120,7 @@ export default function AppleComparison({ products }: AppleComparisonProps) {
                   {product.colors.slice(0, 4).map((color) => (
                     <button
                       key={color.name}
-                      className="w-4 h-4 md:w-6 md:h-6 rounded-full border-2 border-white shadow-md hover:scale-110 transition-transform focus:outline-none focus:ring-2 focus:ring-apple-blue focus:ring-offset-1"
+                      className="w-4 h-4 md:w-6 md:h-6 rounded-full border-2 border-white shadow-md hover:scale-110 transition-transform focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1"
                       style={{ backgroundColor: color.hex }}
                       title={color.name}
                       aria-label={`Välj ${color.name}`}
@@ -134,7 +134,7 @@ export default function AppleComparison({ products }: AppleComparisonProps) {
                 </div>
 
                 {/* Price */}
-                <p className="text-caption md:text-body text-apple-gray-800 mb-3 md:mb-4">
+                <p className="text-caption md:text-body text-gray-800 mb-3 md:mb-4">
                   {product.price.formatted}
                 </p>
 
@@ -142,13 +142,13 @@ export default function AppleComparison({ products }: AppleComparisonProps) {
                 <div className="space-y-2 md:space-y-3">
                   <a
                     href="#"
-                    className="inline-flex items-center justify-center w-full max-w-[160px] md:max-w-[200px] px-4 md:px-6 py-2 md:py-3 bg-apple-blue text-white text-caption md:text-body font-medium rounded-apple-sm hover:bg-apple-blue-hover transition-colors"
+                    className="inline-flex items-center justify-center w-full max-w-[160px] md:max-w-[200px] px-4 md:px-6 py-2 md:py-3 bg-primary text-white text-caption md:text-body font-medium rounded-md hover:bg-primary transition-colors"
                   >
                     Köp
                   </a>
                   <a
                     href="#"
-                    className="block text-apple-blue text-caption md:text-body hover:underline"
+                    className="block text-primary text-caption md:text-body hover:underline"
                   >
                     Läs mer →
                   </a>
@@ -160,10 +160,10 @@ export default function AppleComparison({ products }: AppleComparisonProps) {
       </div>
 
       {/* Category Navigation - Sticky */}
-      <div className="sticky top-0 z-20 bg-apple-gray-100 border-y border-apple-gray-200">
+      <div className="sticky top-0 z-20 bg-gray-100 border-y border-gray-200">
         <div className="max-w-[980px] mx-auto px-4 md:px-6">
           <nav className="flex justify-center overflow-x-auto scrollbar-hide scroll-smooth">
-            <ul className="flex gap-1 p-1 bg-apple-gray-200 rounded-full my-3">
+            <ul className="flex gap-1 p-1 bg-gray-200 rounded-full my-3">
               {categories.map((cat) => (
                 <li key={cat.id}>
                   <button
@@ -171,8 +171,8 @@ export default function AppleComparison({ products }: AppleComparisonProps) {
                     className={`
                       px-3 md:px-5 py-1.5 md:py-2 rounded-full text-small md:text-caption font-medium transition-all whitespace-nowrap
                       ${activeCategory === cat.id
-                        ? 'bg-apple-gray-800 text-white'
-                        : 'text-apple-gray-600 hover:text-apple-gray-800'
+                        ? 'bg-gray-800 text-white'
+                        : 'text-gray-600 hover:text-gray-800'
                       }
                     `}
                   >

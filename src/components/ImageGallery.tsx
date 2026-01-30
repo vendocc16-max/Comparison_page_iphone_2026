@@ -83,7 +83,7 @@ export default function ImageGallery({
       {/* Main Image Display */}
       <div
         className="
-          relative aspect-square bg-apple-gray-50 rounded-apple
+          relative aspect-square bg-gray-50 rounded-lg
           overflow-hidden cursor-pointer
           transition-transform duration-300 hover:scale-105
         "
@@ -125,8 +125,8 @@ export default function ImageGallery({
                 w-2 h-2 rounded-full transition-all
                 ${
                   index === currentIndex
-                    ? 'bg-apple-blue w-6'
-                    : 'bg-apple-gray-300 hover:bg-apple-gray-400'
+                    ? 'bg-primary w-6'
+                    : 'bg-gray-300 hover:bg-gray-400'
                 }
               `}
               aria-label={`View ${imageArray[index].label}`}
@@ -141,9 +141,9 @@ export default function ImageGallery({
             onClick={goToPrevious}
             className="
               flex-1 py-2 px-3 text-sm font-medium
-              bg-apple-gray-100 text-apple-gray-900
-              rounded-apple hover:bg-apple-gray-200
-              transition-colors duration-apple
+              bg-gray-100 text-gray-900
+              rounded-lg hover:bg-gray-200
+              transition-colors duration-300
               active:scale-95
             "
             aria-label="Previous image"
@@ -159,9 +159,9 @@ export default function ImageGallery({
             onClick={goToNext}
             className="
               flex-1 py-2 px-3 text-sm font-medium
-              bg-apple-gray-100 text-apple-gray-900
-              rounded-apple hover:bg-apple-gray-200
-              transition-colors duration-apple
+              bg-gray-100 text-gray-900
+              rounded-lg hover:bg-gray-200
+              transition-colors duration-300
               active:scale-95
             "
             aria-label="Next image"

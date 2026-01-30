@@ -29,16 +29,16 @@ export default function ComparisonTable({ products }: ComparisonTableProps) {
   const expandAll = () => setExpandedCategories(allCategories);
   const collapseAll = () => setExpandedCategories([]);
 
-  if (products.length === 0) {
+    if (products.length === 0) {
     return (
-      <section className="section bg-apple-gray-50">
-        <div className="container-apple text-center py-20">
-          <div className="w-16 h-16 mx-auto mb-6 bg-apple-gray-200 rounded-full flex items-center justify-center">
-            <svg className="w-8 h-8 text-apple-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <section className="section bg-gray-50">
+        <div className="container max-w-4xl mx-auto px-4 text-center py-20">
+          <div className="w-16 h-16 mx-auto mb-6 bg-gray-200 rounded-full flex items-center justify-center">
+            <svg className="w-8 h-8 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
             </svg>
           </div>
-          <p className="text-body-large text-apple-gray-500">
+          <p className="text-body-large text-gray-500">
             Välj produkter ovan för att jämföra
           </p>
         </div>
@@ -47,23 +47,23 @@ export default function ComparisonTable({ products }: ComparisonTableProps) {
   }
 
   return (
-    <section className="section bg-apple-gray-50">
-      <div className="max-w-apple-wide mx-auto px-4 md:px-6">
+    <section className="section bg-gray-50">
+      <div className="max-w-5xl mx-auto px-4 md:px-6">
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8 gap-4">
-          <h2 className="text-subheadline text-apple-gray-800">
+          <h2 className="text-subheadline text-gray-800">
             Jämför specifikationer
           </h2>
           <div className="flex gap-2">
             <button
               onClick={expandAll}
-              className="px-4 py-2 text-caption text-apple-blue hover:bg-apple-blue/5 rounded-lg transition-colors"
+              className="px-4 py-2 text-caption text-primary hover:bg-primary/5 rounded-lg transition-colors"
             >
               Visa alla
             </button>
             <button
               onClick={collapseAll}
-              className="px-4 py-2 text-caption text-apple-gray-500 hover:bg-apple-gray-100 rounded-lg transition-colors"
+              className="px-4 py-2 text-caption text-gray-500 hover:bg-gray-100 rounded-lg transition-colors"
             >
               Dölj alla
             </button>
@@ -71,7 +71,7 @@ export default function ComparisonTable({ products }: ComparisonTableProps) {
         </div>
 
         {/* Sticky Product Headers */}
-        <div className="sticky top-0 bg-apple-gray-50/95 backdrop-blur-sm z-10 pb-6 pt-2 -mx-4 px-4 md:-mx-6 md:px-6">
+        <div className="sticky top-0 bg-gray-50/95 backdrop-blur-sm z-10 pb-6 pt-2 -mx-4 px-4 md:-mx-6 md:px-6">
           <div
             className="grid gap-4 md:gap-6"
             style={{ gridTemplateColumns: `minmax(120px, 200px) repeat(${products.length}, 1fr)` }}
@@ -87,10 +87,10 @@ export default function ComparisonTable({ products }: ComparisonTableProps) {
                     priority={index === 0}
                   />
                 </div>
-                <h3 className="text-body md:text-subheadline font-semibold text-apple-gray-800">
+                <h3 className="text-body md:text-subheadline font-semibold text-gray-800">
                   {product.name}
                 </h3>
-                <p className="text-caption md:text-body text-apple-gray-500">
+                <p className="text-caption md:text-body text-gray-500">
                   {product.price.formatted}
                 </p>
                 {/* Color dots */}
@@ -98,7 +98,7 @@ export default function ComparisonTable({ products }: ComparisonTableProps) {
                   {product.colors.slice(0, 4).map((color) => (
                     <span
                       key={color.name}
-                      className="w-2 h-2 rounded-full border border-apple-gray-200"
+                      className="w-2 h-2 rounded-full border border-gray-200"
                       style={{ backgroundColor: color.hex }}
                       title={color.name}
                     />
@@ -117,19 +117,19 @@ export default function ComparisonTable({ products }: ComparisonTableProps) {
             return (
               <div
                 key={categoryName}
-                className="bg-white rounded-apple overflow-hidden shadow-sm"
+                className="bg-white rounded-lg overflow-hidden shadow-sm"
               >
                 {/* Category Header */}
                 <button
                   onClick={() => toggleCategory(categoryName)}
-                  className="w-full px-4 md:px-6 py-4 flex items-center justify-between text-left hover:bg-apple-gray-50 transition-colors focus:outline-none focus:ring-2 focus:ring-inset focus:ring-apple-blue"
+                  className="w-full px-4 md:px-6 py-4 flex items-center justify-between text-left hover:bg-gray-50 transition-colors focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary"
                   aria-expanded={isExpanded}
                 >
                   <h4 className="text-body font-semibold text-apple-gray-800">
                     {categoryName}
                   </h4>
                   <svg
-                    className={`w-5 h-5 text-apple-gray-400 transition-transform duration-apple ease-apple ${
+                    className={`w-5 h-5 text-gray-400 transition-transform duration-300 ease-in-out ${
                       isExpanded ? 'rotate-180' : ''
                     }`}
                     fill="none"
@@ -144,8 +144,8 @@ export default function ComparisonTable({ products }: ComparisonTableProps) {
                 {/* Category Specs */}
                 <div
                   className={`
-                    border-t border-apple-gray-100 overflow-hidden
-                    transition-all duration-apple ease-apple
+                    border-t border-gray-100 overflow-hidden
+                    transition-all duration-300 ease-in-out
                     ${isExpanded ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'}
                   `}
                 >
@@ -164,12 +164,12 @@ export default function ComparisonTable({ products }: ComparisonTableProps) {
                       key={specIndex}
                       className={`
                         grid gap-4 md:gap-6 px-4 md:px-6 py-3 md:py-4
-                        ${specIndex % 2 === 0 ? 'bg-white' : 'bg-apple-gray-50/50'}
+                        ${specIndex % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'}
                       `}
                       style={{ gridTemplateColumns: `minmax(120px, 200px) repeat(${products.length}, 1fr)` }}
                     >
                       {/* Spec Label */}
-                      <div className="text-caption md:text-body text-apple-gray-500 flex items-center">
+                      <div className="text-caption md:text-body text-gray-500 flex items-center">
                         {specLabel}
                       </div>
 
@@ -185,13 +185,13 @@ export default function ComparisonTable({ products }: ComparisonTableProps) {
                             key={product.id}
                             className={`
                               text-caption md:text-body text-center flex items-center justify-center
-                              ${isHighlighted ? 'text-apple-blue font-medium' : 'text-apple-gray-800'}
+                              ${isHighlighted ? 'text-primary font-medium' : 'text-gray-800'}
                             `}
                           >
                             {typeof value === 'boolean' ? (
                               value ? (
                                 <svg
-                                  className={`w-5 h-5 ${isHighlighted ? 'text-apple-blue' : 'text-apple-green'}`}
+                                  className={`w-5 h-5 ${isHighlighted ? 'text-primary' : 'text-success'}`}
                                   fill="none"
                                   viewBox="0 0 24 24"
                                   stroke="currentColor"
@@ -200,12 +200,12 @@ export default function ComparisonTable({ products }: ComparisonTableProps) {
                                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                                 </svg>
                               ) : (
-                                <span className="text-apple-gray-300" aria-label="Nej">—</span>
+                                <span className="text-gray-300" aria-label="Nej">—</span>
                               )
-                            ) : value !== undefined ? (
+                              ) : value !== undefined ? (
                               value
                             ) : (
-                              <span className="text-apple-gray-300">—</span>
+                              <span className="text-gray-300">—</span>
                             )}
                           </div>
                         );
@@ -220,7 +220,7 @@ export default function ComparisonTable({ products }: ComparisonTableProps) {
 
         {/* Bottom CTA */}
         <div className="mt-12 text-center">
-          <p className="text-body text-apple-gray-500 mb-4">
+          <p className="text-body text-gray-500 mb-4">
             Hittat rätt iPhone?
           </p>
           <a href="#" className="btn-primary">

@@ -6,7 +6,7 @@ import { products } from './data/products';
 
 function App() {
   // Default: all products selected
-  const [selectedProducts] = useState<string[]>([
+  const [selectedProducts, setSelectedProducts] = useState<string[]>([
     'iphone-17-pro',
     'iphone-17-air',
     'iphone-17',
@@ -22,7 +22,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-white">
-      <Header />
+      <Header products={products} selectedIds={selectedProducts} onSelectionChange={setSelectedProducts} />
       <main>
         <AppleComparison products={sortedProducts} />
       </main>

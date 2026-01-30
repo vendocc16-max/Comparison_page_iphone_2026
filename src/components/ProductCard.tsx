@@ -1,5 +1,5 @@
 import { Product } from '../types/product';
-import ImageGallery from './ImageGallery';
+import ResponsiveImage from './ResponsiveImage';
 
 interface ProductCardProps {
   product: Product;
@@ -17,16 +17,16 @@ export default function ProductCard({
   return (
     <article
       className={`
-        relative bg-white rounded-apple-lg overflow-hidden
-        transition-all duration-apple ease-apple
+        relative bg-white rounded-xl overflow-hidden
+        transition-all duration-300 ease-in-out
         ${disabled && !isSelected ? 'opacity-50' : ''}
-        ${isSelected ? 'ring-2 ring-apple-blue shadow-apple-lg' : 'shadow-apple hover:shadow-apple-lg'}
+        ${isSelected ? 'ring-2 ring-primary shadow-lg' : 'shadow-sm hover:shadow-lg'}
       `}
     >
       {/* New Badge */}
       {product.isNew && (
         <div className="absolute top-4 left-4 z-10">
-          <span className="inline-block px-3 py-1 text-small font-medium text-white bg-apple-red rounded-full">
+          <span className="inline-block px-3 py-1 text-small font-medium text-white bg-error rounded-full">
             Ny
           </span>
         </div>
@@ -35,17 +35,18 @@ export default function ProductCard({
       {/* Featured Badge */}
       {product.isFeatured && (
         <div className="absolute top-4 right-4 z-10">
-          <span className="inline-block px-3 py-1 text-small font-medium text-apple-blue bg-apple-blue/10 rounded-full">
+          <span className="inline-block px-3 py-1 text-small font-medium text-primary bg-primary/10 rounded-full">
             Populär
           </span>
         </div>
       )}
 
-      {/* Product Image with Gallery */}
-      <div className="p-6 bg-apple-gray-50">
-        <ImageGallery
-          images={product.images}
-          productName={product.name}
+      {/* Product Image */}
+      <div className="aspect-square p-6 bg-gray-50">
+        <ResponsiveImage
+          images={product.images.frontBack}
+          alt={`${product.name} front and back view`}
+          className="w-full h-full"
         />
       </div>
 
@@ -58,9 +59,9 @@ export default function ProductCard({
               key={color.name}
               className={`
                 w-5 h-5 rounded-full border-2 transition-transform duration-200
-                hover:scale-110 focus:outline-none focus:ring-2 focus:ring-apple-blue focus:ring-offset-2
+                hover:scale-110 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2
                 ${color.hex === '#f5f5f7' || color.hex === '#f0e4d3' || color.hex === '#e3e3df'
-                  ? 'border-apple-gray-300'
+                  ? 'border-gray-300'
                   : 'border-transparent'
                 }
               `}
@@ -73,25 +74,25 @@ export default function ProductCard({
 
         {/* Name & Tagline */}
         <div className="text-center mb-4">
-          <h3 className="text-subheadline text-apple-gray-800 mb-1">
+          <h3 className="text-subheadline text-gray-800 mb-1">
             {product.name}
           </h3>
-          <p className="text-body text-apple-gray-500">
+          <p className="text-body text-gray-500">
             {product.tagline}
           </p>
         </div>
 
         {/* Price */}
-        <p className="text-center text-body-large font-medium text-apple-gray-800 mb-6">
+        <p className="text-center text-body-large font-medium text-gray-800 mb-6">
           {product.price.formatted}
         </p>
 
         {/* Quick Specs Preview */}
         <div className="grid grid-cols-2 gap-3 mb-6 text-center">
           {product.categories.slice(0, 2).map((category) => (
-            <div key={category.name} className="bg-apple-gray-50 rounded-apple-sm p-3">
-              <p className="text-small text-apple-gray-500 mb-1">{category.name}</p>
-              <p className="text-caption font-medium text-apple-gray-800">
+            <div key={category.name} className="bg-gray-50 rounded-lg-sm p-3">
+              <p className="text-small text-gray-500 mb-1">{category.name}</p>
+              <p className="text-caption font-medium text-gray-800">
                 {typeof category.specs[0]?.value === 'boolean'
                   ? (category.specs[0].value ? 'Ja' : 'Nej')
                   : category.specs[0]?.value}
@@ -105,14 +106,14 @@ export default function ProductCard({
           onClick={onToggle}
           disabled={disabled && !isSelected}
           className={`
-            w-full py-3 px-6 rounded-apple-sm font-medium
-            transition-all duration-apple ease-apple
+            w-full py-3 px-6 rounded-lg-sm font-medium
+            transition-all duration-300 ease-in-out
             focus:outline-none focus:ring-2 focus:ring-offset-2
             ${isSelected
-              ? 'bg-apple-blue text-white hover:bg-apple-blue-hover focus:ring-apple-blue'
+              ? 'bg-primary text-white hover:bg-primary-hover focus:ring-primary'
               : disabled
-                ? 'bg-apple-gray-200 text-apple-gray-400 cursor-not-allowed'
-                : 'bg-apple-gray-100 text-apple-gray-800 hover:bg-apple-gray-200 focus:ring-apple-gray-400'
+                ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                : 'bg-gray-100 text-gray-800 hover:bg-gray-200 focus:ring-apple-gray-400'
             }
           `}
         >
@@ -135,7 +136,7 @@ export default function ProductCard({
       <div className="px-6 pb-6 pt-0">
         <a
           href="#"
-          className="block text-center text-body text-apple-blue hover:underline"
+          className="block text-center text-body text-primary hover:underline"
         >
           Läs mer om {product.name} →
         </a>

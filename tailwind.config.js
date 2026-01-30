@@ -6,35 +6,35 @@ export default {
   ],
   theme: {
     extend: {
-      // Apple-like color palette
+      // Neutral color palette (Tele2-compatible)
       colors: {
-        apple: {
-          gray: {
-            50: '#fbfbfd',
-            100: '#f5f5f7',
-            200: '#e8e8ed',
-            300: '#d2d2d7',
-            400: '#86868b',
-            500: '#6e6e73',
-            600: '#424245',
-            700: '#333336',
-            800: '#1d1d1f',
-            900: '#000000',
-          },
-          blue: {
-            DEFAULT: '#0071e3',
-            hover: '#0077ed',
-            light: '#2997ff',
-          },
-          green: '#34c759',
-          red: '#ff3b30',
+        // Neutral grays - replaces Apple grays
+        gray: {
+          50: '#f9f9f9',
+          100: '#f3f3f3',
+          200: '#e5e5e5',
+          300: '#d0d0d0',
+          400: '#808080',
+          500: '#666666',
+          600: '#404040',
+          700: '#333333',
+          800: '#1a1a1a',
+          900: '#000000',
         },
+        // Primary brand blue - for interactive elements
+        primary: {
+          DEFAULT: '#0066cc',
+          hover: '#0052a3',
+          light: '#e6f0ff',
+        },
+        // Accent colors
+        success: '#28a745',
+        error: '#dc3545',
+        warning: '#ffc107',
       },
-      // Apple-like font family
+      // Clean sans-serif font stack
       fontFamily: {
         sans: [
-          'SF Pro Display',
-          'SF Pro Text',
           '-apple-system',
           'BlinkMacSystemFont',
           'Segoe UI',
@@ -44,7 +44,7 @@ export default {
           'sans-serif',
         ],
       },
-      // Apple-like font sizes
+      // Font sizes (keep - not Apple-specific)
       fontSize: {
         'headline': ['48px', { lineHeight: '1.1', fontWeight: '600' }],
         'subheadline': ['28px', { lineHeight: '1.14', fontWeight: '600' }],
@@ -53,36 +53,36 @@ export default {
         'caption': ['14px', { lineHeight: '1.43', fontWeight: '400' }],
         'small': ['12px', { lineHeight: '1.33', fontWeight: '400' }],
       },
-      // Apple-like spacing
+      // Spacing (keep - generic)
       spacing: {
         '18': '4.5rem',
         '22': '5.5rem',
         '30': '7.5rem',
       },
-      // Apple-like max widths
+      // Max widths (rename)
       maxWidth: {
-        'apple-content': '980px',
-        'apple-wide': '1440px',
+        'content': '980px',
+        'wide': '1440px',
       },
-      // Apple-like border radius
+      // Border radius (rename)
       borderRadius: {
-        'apple': '18px',
-        'apple-sm': '12px',
-        'apple-lg': '28px',
+        'lg': '18px',
+        'md': '12px',
+        'xl': '28px',
       },
-      // Apple-like transitions
+      // Transitions (keep)
       transitionDuration: {
-        'apple': '400ms',
+        'smooth': '400ms',
       },
       transitionTimingFunction: {
-        'apple': 'cubic-bezier(0.25, 0.1, 0.25, 1)',
+        'smooth': 'cubic-bezier(0.25, 0.1, 0.25, 1)',
       },
-      // Apple-like shadows
+      // Shadows (rename)
       boxShadow: {
-        'apple': '0 4px 16px rgba(0, 0, 0, 0.12)',
-        'apple-lg': '0 8px 32px rgba(0, 0, 0, 0.16)',
+        'base': '0 4px 16px rgba(0, 0, 0, 0.12)',
+        'lg': '0 8px 32px rgba(0, 0, 0, 0.16)',
       },
-      // Animations
+      // Animations (keep)
       keyframes: {
         fadeIn: {
           '0%': { opacity: '0' },

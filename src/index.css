@@ -11,17 +11,17 @@
   }
 
   body {
-    @apply bg-white text-apple-gray-800 font-sans;
+    @apply bg-white text-gray-800 font-sans;
   }
 
   /* Apple-like focus styles */
   :focus-visible {
-    @apply outline-none ring-4 ring-apple-blue/30 ring-offset-2;
+    @apply outline-none ring-4 ring-primary/30 ring-offset-2;
   }
 
   /* Apple-like selection */
   ::selection {
-    @apply bg-apple-blue text-white;
+    @apply bg-primary text-white;
   }
 }
 
@@ -29,29 +29,29 @@
   /* Apple-like button styles */
   .btn-primary {
     @apply inline-flex items-center justify-center px-6 py-3
-           bg-apple-blue text-white font-medium rounded-apple-sm
-           transition-all duration-apple ease-apple
-           hover:bg-apple-blue-hover active:scale-[0.98];
+           bg-primary text-white font-medium rounded-md
+           transition-all duration-300 ease-in-out
+           hover:bg-primary active:scale-[0.98];
   }
 
   .btn-secondary {
     @apply inline-flex items-center justify-center px-6 py-3
-           bg-transparent text-apple-blue font-medium rounded-apple-sm
-           border border-apple-blue
-           transition-all duration-apple ease-apple
-           hover:bg-apple-blue hover:text-white active:scale-[0.98];
+           bg-transparent text-primary font-medium rounded-md
+           border border-primary
+           transition-all duration-300 ease-in-out
+           hover:bg-primary hover:text-white active:scale-[0.98];
   }
 
   /* Apple-like link styles */
   .link {
-    @apply text-apple-blue hover:underline transition-colors duration-200;
+    @apply text-primary hover:underline transition-colors duration-200;
   }
 
   /* Apple-like card */
   .card {
-    @apply bg-white rounded-apple shadow-apple p-6
-           transition-shadow duration-apple ease-apple
-           hover:shadow-apple-lg;
+    @apply bg-white rounded-lg shadow-sm p-6
+           transition-shadow duration-300 ease-in-out
+           hover:shadow-lg;
   }
 
   /* Apple-like section */
@@ -61,7 +61,7 @@
 
   /* Container */
   .container-apple {
-    @apply max-w-apple-content mx-auto px-6;
+    @apply max-w-4xl mx-auto px-6;
   }
 }
 

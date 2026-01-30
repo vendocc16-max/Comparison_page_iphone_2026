@@ -1,6 +1,14 @@
-export default function Header() {
+import { Product } from '../types/product';
+
+interface HeaderProps {
+  products?: Product[];
+  selectedIds?: string[];
+  onSelectionChange?: (ids: string[]) => void;
+}
+
+export default function Header({ products = [], selectedIds = [], onSelectionChange }: HeaderProps) {
   return (
-    <header className="bg-[#fbfbfd] border-b border-apple-gray-200">
+    <header className="bg-[#fbfbfd] border-b border-gray-200">
       {/* Top Nav Bar */}
       <div className="bg-[#1d1d1f]">
         <div className="max-w-[980px] mx-auto px-6 h-11 flex items-center justify-between">
@@ -27,6 +35,26 @@ export default function Header() {
           </nav>
 
           <div className="flex items-center gap-4">
+            {products.length > 0 && (
+              <label className="sr-only">Välj produkter att jämföra</label>
+            )}
+            {products.length > 0 && (
+              <select
+                multiple
+                value={selectedIds}
+                onChange={(e) => {
+                  const opts = Array.from((e.target as HTMLSelectElement).selectedOptions).map(o => o.value);
+                  onSelectionChange?.(opts.slice(0, 3));
+                }}
+                className="bg-white text-sm text-gray-800 border border-gray-200 rounded px-2 py-1"
+                aria-label="Välj produkter att jämföra"
+                size={1}
+              >
+                {products.map((p) => (
+                  <option key={p.id} value={p.id}>{p.name}</option>
+                ))}
+              </select>
+            )}
             <button className="text-[#f5f5f7] hover:text-white transition-colors">
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -44,16 +72,16 @@ export default function Header() {
       {/* Sub Navigation */}
       <div className="max-w-[980px] mx-auto px-6">
         <div className="flex items-center justify-between h-12 overflow-x-auto">
-          <a href="#" className="text-body font-semibold text-apple-gray-800 whitespace-nowrap">
+          <a href="#" className="text-body font-semibold text-gray-800 whitespace-nowrap">
             iPhone
           </a>
-          <nav className="hidden md:flex items-center gap-5 text-xs text-apple-gray-500">
-            <a href="#" className="hover:text-apple-gray-800 transition-colors">Utforska iPhone</a>
-            <a href="#" className="hover:text-apple-gray-800 transition-colors font-medium text-apple-gray-800">Jämför modeller</a>
-            <a href="#" className="hover:text-apple-gray-800 transition-colors">Byt telefon</a>
-            <a href="#" className="hover:text-apple-gray-800 transition-colors">Mobilabonnemang</a>
-            <a href="#" className="hover:text-apple-gray-800 transition-colors">iPhone och miljön</a>
-            <a href="#" className="hover:text-apple-gray-800 transition-colors">Tillbehör</a>
+          <nav className="hidden md:flex items-center gap-5 text-xs text-gray-500">
+            <a href="#" className="hover:text-gray-800 transition-colors">Utforska iPhone</a>
+            <a href="#" className="hover:text-gray-800 transition-colors font-medium text-gray-800">Jämför modeller</a>
+            <a href="#" className="hover:text-gray-800 transition-colors">Byt telefon</a>
+            <a href="#" className="hover:text-gray-800 transition-colors">Mobilabonnemang</a>
+            <a href="#" className="hover:text-gray-800 transition-colors">iPhone och miljön</a>
+            <a href="#" className="hover:text-gray-800 transition-colors">Tillbehör</a>
           </nav>
         </div>
       </div>

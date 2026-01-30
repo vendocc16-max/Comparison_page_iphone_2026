@@ -17,14 +17,14 @@ export default function ResponsiveImage({
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
 
-  if (hasError) {
+    if (hasError) {
     return (
       <div
-        className={`bg-apple-gray-100 flex items-center justify-center ${className}`}
+        className={`bg-gray-100 flex items-center justify-center ${className}`}
         role="img"
         aria-label={alt}
       >
-        <span className="text-apple-gray-400 text-small">Image unavailable</span>
+        <span className="text-gray-400 text-small">Image unavailable</span>
       </div>
     );
   }
