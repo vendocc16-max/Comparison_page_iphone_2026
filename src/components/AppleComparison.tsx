@@ -93,25 +93,31 @@ export default function AppleComparison({ allProducts, selectedIds, onSelectionC
             className="grid mb-4 md:mb-6"
             style={{ gridTemplateColumns: `repeat(${products.length}, 1fr)` }}
           >
-            {selectedIds.map((selectedId, index) => (
-              <div key={index} className="text-center px-2 md:px-4">
-                <select
-                  value={selectedId}
-                  onChange={(e) => {
-                    const newIds = [...selectedIds];
-                    newIds[index] = e.target.value;
-                    onSelectionChange(newIds);
-                  }}
-                  className="w-full max-w-[200px] px-3 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-800 bg-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
-                >
-                  {allProducts.map((product) => (
-                    <option key={product.id} value={product.id}>
-                      {product.name}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            ))}
+            {selectedIds.map((selectedId, index) => {
+              // Get available products (exclude those selected in other positions)
+              const otherSelectedIds = selectedIds.filter((_, i) => i !== index);
+              const availableProducts = allProducts.filter(p => !otherSelectedIds.includes(p.id));
+              
+              return (
+                <div key={index} className="text-center px-2 md:px-4">
+                  <select
+                    value={selectedId}
+                    onChange={(e) => {
+                      const newIds = [...selectedIds];
+                      newIds[index] = e.target.value;
+                      onSelectionChange(newIds);
+                    }}
+                    className="w-full max-w-[200px] px-3 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-800 bg-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
+                  >
+                    {availableProducts.map((product) => (
+                      <option key={product.id} value={product.id}>
+                        {product.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              );
+            })}
           </div>
 
           {/* Product Title Row */}
