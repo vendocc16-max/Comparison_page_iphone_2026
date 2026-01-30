@@ -3,7 +3,9 @@ import { Product } from '../types/product';
 import ResponsiveImage from './ResponsiveImage';
 
 interface AppleComparisonProps {
-  products: Product[];
+  allProducts: Product[];
+  selectedIds: string[];
+  onSelectionChange: (ids: string[]) => void;
 }
 
 // Category navigation items
@@ -15,10 +17,13 @@ const categories = [
   { id: 'battery', label: 'Batteri' },
 ];
 
-export default function AppleComparison({ products }: AppleComparisonProps) {
+export default function AppleComparison({ allProducts, selectedIds, onSelectionChange }: AppleComparisonProps) {
   const [activeCategory, setActiveCategory] = useState('design');
   const [isScrolled, setIsScrolled] = useState(false);
   const headerRef = useRef<HTMLDivElement>(null);
+
+  // Get selected products in order
+  const products = selectedIds.map(id => allProducts.find(p => p.id === id)).filter(Boolean) as Product[];
 
   // Track scroll position for compact header
   useEffect(() => {
@@ -83,17 +88,28 @@ export default function AppleComparison({ products }: AppleComparisonProps) {
       {/* Hero Section with Products */}
       <div className="bg-white pt-8 pb-4 md:pb-8">
         <div className="max-w-[980px] mx-auto px-4 md:px-6">
-          {/* Product Title Row */}
+          {/* Product Selector Row */}
           <div
             className="grid mb-4 md:mb-6"
             style={{ gridTemplateColumns: `repeat(${products.length}, 1fr)` }}
           >
-            {products.map((product) => (
-                <div key={product.id} className="text-center px-2 md:px-4">
-                <p className="text-small md:text-caption text-gray-500 mb-1">Ny</p>
-                <h2 className="text-body md:text-subheadline font-semibold text-gray-800">
-                  {product.name}
-                </h2>
+            {selectedIds.map((selectedId, index) => (
+              <div key={index} className="text-center px-2 md:px-4">
+                <select
+                  value={selectedId}
+                  onChange={(e) => {
+                    const newIds = [...selectedIds];
+                    newIds[index] = e.target.value;
+                    onSelectionChange(newIds);
+                  }}
+                  className="w-full max-w-[200px] px-3 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-800 bg-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
+                >
+                  {allProducts.map((product) => (
+                    <option key={product.id} value={product.id}>
+                      {product.name}
+                    </option>
+                  ))}
+                </select>
               </div>
             ))}
           </div>
