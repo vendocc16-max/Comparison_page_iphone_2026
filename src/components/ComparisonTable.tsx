@@ -149,6 +149,19 @@ export default function ComparisonTable({ products }: ComparisonTableProps) {
                     ${isExpanded ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'}
                   `}
                 >
+                  {/* Category Header Row */}
+                  <div
+                    className="grid gap-4 md:gap-6 px-4 md:px-6 py-3 md:py-4 bg-gray-100/50 font-semibold text-caption md:text-body text-gray-700 border-b border-gray-200"
+                    style={{ gridTemplateColumns: `minmax(120px, 200px) repeat(${products.length}, 1fr)` }}
+                  >
+                    <div></div> {/* Empty cell for spec labels */}
+                    {products.map((product) => (
+                      <div key={product.id} className="text-center">
+                        {product.name}
+                      </div>
+                    ))}
+                  </div>
+
                   {/* Get all unique specs across products for this category */}
                   {(() => {
                     const allSpecs = new Map<string, boolean>();

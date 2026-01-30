@@ -145,7 +145,7 @@
   - Consistent sizing and styling
   - Reference: See Tele2.se comparison page structure
 
-- [ ] **Spec Column Headers with Phone Names**
+- [x] **Spec Column Headers with Phone Names**
   - Each spec column clearly labeled with phone model
   - Visual distinction between columns
   - Phone image thumbnail in header (optional)
