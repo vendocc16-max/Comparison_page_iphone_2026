@@ -132,14 +132,14 @@
   - Update buttons and CTAs to "Köp nu" (Buy now) instead of "Lägg till"
   - Align with Tele2 visual language
 
-- [ ] **Phone Selector Dropdown**
+- [x] **Phone Selector Dropdown**
   - Add dropdown/modal to select which phones to compare
   - Support 2-4 phone comparison
   - Persist selection in URL state
   - Pre-select 2-3 popular phones by default
   - Mobile-responsive selector
 
-- [ ] **Clear Phone Column Labels**
+- [x] **Clear Phone Column Labels**
   - Display phone name above each column (e.g., "iPhone 17", "iPhone 17 Air", "iPhone 17 Pro")
   - Prominent positioning in header
   - Consistent sizing and styling

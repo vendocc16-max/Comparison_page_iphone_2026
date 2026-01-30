@@ -114,6 +114,21 @@ export default function AppleComparison({ allProducts, selectedIds, onSelectionC
             ))}
           </div>
 
+          {/* Product Title Row */}
+          <div
+            className="grid mb-4 md:mb-6"
+            style={{ gridTemplateColumns: `repeat(${products.length}, 1fr)` }}
+          >
+            {products.map((product) => (
+                <div key={product.id} className="text-center px-2 md:px-4">
+                <p className="text-small md:text-caption text-gray-500 mb-1">Ny</p>
+                <h2 className="text-body md:text-subheadline font-semibold text-gray-800">
+                  {product.name}
+                </h2>
+              </div>
+            ))}
+          </div>
+
           {/* Product Images */}
           <div
             className="grid"
