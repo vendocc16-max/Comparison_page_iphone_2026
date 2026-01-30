@@ -502,6 +502,19 @@ function ComparisonSection({ products, title, rows }: ComparisonSectionProps) {
     <div className="comparison-section animate-stagger">
       <h3 className="sr-only">{title}</h3>
 
+      {/* Header Row with Product Names */}
+      <div
+        className="grid items-center py-3 md:py-4 bg-gray-100/50 font-semibold text-caption md:text-body text-gray-700 border-b-2 border-gray-200"
+        style={{ gridTemplateColumns: `140px repeat(${products.length}, 1fr)` }}
+      >
+        <div></div> {/* Empty cell for row labels */}
+        {products.map((product) => (
+          <div key={product.id} className="text-center px-2 md:px-4">
+            {product.name}
+          </div>
+        ))}
+      </div>
+
       {rows.map((row, index) => (
         <div
           key={index}
