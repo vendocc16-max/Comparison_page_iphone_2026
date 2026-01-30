@@ -526,9 +526,8 @@ function ComparisonSection({ products, title, rows }: ComparisonSectionProps) {
         <div
           key={index}
           className={`
-            grid items-center py-4 md:py-6 border-b border-apple-gray-100 last:border-b-0
-            transition-colors hover:bg-apple-gray-50/50
-            ${index === 0 ? 'pt-0' : ''}
+            grid items-start py-6 md:py-8 px-4 border-b border-gray-100 last:border-b-0
+            transition-colors hover:bg-gray-50/50
           `}
           style={{ gridTemplateColumns: `140px repeat(${products.length}, 1fr)` }}
         >
@@ -543,7 +542,14 @@ function ComparisonSection({ products, title, rows }: ComparisonSectionProps) {
             const isHighlighted = row.highlight?.(product) ?? false;
 
             return (
-              <div key={product.id} className="text-center px-2 md:px-4">
+              <div key={product.id} className="text-center px-2 md:px-4 flex flex-col items-center gap-1">
+                {/* Phone Title */}
+                <div className="text-small md:text-caption text-gray-500">Ny</div>
+                {/* Phone Name */}
+                <div className="text-xs md:text-sm font-medium text-gray-600">
+                  {product.name}
+                </div>
+
                 {/* Optional Image */}
                 {row.imageKey && index === 0 && (
                   <div className="h-[80px] md:h-[120px] flex items-center justify-center mb-2 md:mb-3">
@@ -560,7 +566,7 @@ function ComparisonSection({ products, title, rows }: ComparisonSectionProps) {
                   value ? (
                     <svg
                       className={`w-5 h-5 md:w-6 md:h-6 mx-auto animate-scale-in ${
-                        isHighlighted ? 'text-apple-blue' : 'text-apple-green'
+                        isHighlighted ? 'text-primary' : 'text-green-500'
                       }`}
                       fill="none"
                       viewBox="0 0 24 24"
@@ -574,14 +580,14 @@ function ComparisonSection({ products, title, rows }: ComparisonSectionProps) {
                       />
                     </svg>
                   ) : (
-                    <span className="text-apple-gray-300 text-caption md:text-body animate-fade-in">—</span>
+                    <span className="text-gray-300 text-caption md:text-body animate-fade-in">—</span>
                   )
                 ) : (
                   <span
                     className={`text-caption md:text-body transition-colors ${
                       isHighlighted
-                        ? 'text-apple-blue font-medium'
-                        : 'text-apple-gray-800'
+                        ? 'text-primary font-medium'
+                        : 'text-gray-800'
                     }`}
                   >
                     {value}
