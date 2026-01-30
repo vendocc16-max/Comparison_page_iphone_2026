@@ -504,20 +504,16 @@ function ComparisonSection({ products, title, rows }: ComparisonSectionProps) {
 
       {/* Header Row with Product Names */}
       <div
-        className="grid items-center py-3 md:py-4 bg-gray-200 font-semibold text-caption md:text-body text-gray-800 border-b-2 border-gray-300"
+        className="grid items-center py-4 md:py-6 bg-gray-200 font-semibold text-caption md:text-body text-gray-800 border-b-2 border-gray-300"
         style={{ gridTemplateColumns: `140px repeat(${products.length}, 1fr)` }}
       >
         <div></div> {/* Empty cell for row labels */}
         {products.map((product) => (
-          <div key={product.id} className="text-center px-2 md:px-4 flex flex-col items-center gap-2">
-            <div className="w-8 h-8 md:w-10 md:h-10 flex-shrink-0">
-              <ResponsiveImage
-                images={product.images.frontBack}
-                alt={product.name}
-                className="w-full h-full object-contain"
-              />
-            </div>
-            <span className="text-xs md:text-sm">{product.name}</span>
+          <div key={product.id} className="text-center px-2 md:px-4">
+            <p className="text-small md:text-caption text-gray-500 mb-1">Ny</p>
+            <h3 className="text-body md:text-subheadline font-semibold text-gray-800">
+              {product.name}
+            </h3>
           </div>
         ))}
       </div>
@@ -526,8 +522,9 @@ function ComparisonSection({ products, title, rows }: ComparisonSectionProps) {
         <div
           key={index}
           className={`
-            grid items-start py-6 md:py-8 px-4 border-b border-gray-100 last:border-b-0
-            transition-colors hover:bg-gray-50/50
+            grid items-center py-6 md:py-8 border-b border-gray-100 last:border-b-0
+            transition-colors hover:bg-apple-gray-50/50
+            ${index === 0 ? 'pt-0' : ''}
           `}
           style={{ gridTemplateColumns: `140px repeat(${products.length}, 1fr)` }}
         >
@@ -543,8 +540,6 @@ function ComparisonSection({ products, title, rows }: ComparisonSectionProps) {
 
             return (
               <div key={product.id} className="text-center px-2 md:px-4 flex flex-col items-center gap-1">
-                {/* Phone Title */}
-                <div className="text-small md:text-caption text-gray-500">Ny</div>
                 {/* Phone Name */}
                 <div className="text-xs md:text-sm font-medium text-gray-600">
                   {product.name}
